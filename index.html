@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/CSS/style.css" />
+    <title>Harry Potter Quiz</title>
+  </head>
+
+  <header id="header">
+    <div>
+        <a class="highscore-link" href="#">Highscore</a>
+        <h1 id="timer">Time: </h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <h2>Welcome to the Harry Potter Quiz!</h2>
+        <p>
+          Please answer the following questions to prove that you are not a
+          muggle! When you answer a question incorrectly, the timer will go down
+          10 seconds... Choose Wizardly!
+        </p>
+        <button id="startBtn">Start Quiz</button>
+      </div>
+    </section>
+
+    <section class="question-section">
+      <h3 id="questionTitle">Question</h3>
+        <ul class="options">
+            <button id="opt1"></button>
+            <button id="opt2"></button>
+            <button id="opt3"></button>
+      </ul>
+    </section>
+
+    <section class="divider">
+        <div class="initial-section hide">
+            <p>Your Final Score Is</p>
+            <p>Enter Initials Here
+                <input type="text">
+                <button>Submit</button>
+            </p>
+        </div>
+    </section>
+
+    <section class="result-section hide">
+        <p>Highscore</p>
+        <div id="finalscore">
+            <button id="go-back">Go Back</button>
+            <button id="clear-highscore">Clear Highscale</button>
+        </div>
+    </section>
+
+  </main>
+  <body>
+    <script src="./assets/JS/script.js"></script>
+  </body>
+</html>
