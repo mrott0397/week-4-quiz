@@ -37,12 +37,15 @@ const introSection = document.querySelector('.intro-section');
 const questionSection = document.querySelector('.question-section');
 const title = document.querySelector('#questionTitle');
 const option1 = document.querySelector('#opt1');
-const option2 = document.querySelector('opt2');
+const option2 = document.querySelector('#opt2');
 const option3 = document.querySelector('#opt3');
-
+const option4 = document.querySelector("#opt4");
+const timerSection = document.querySelector('#timer');
 var initialSelection = document.querySelector('.inistial-selection');
 var resultSelection = document.querySelector('.highscore');
 var index = 0;
+let timerInterval;
+let timerCount = 75;
 
 var start = document.querySelector('#startBtn');
 
@@ -52,14 +55,36 @@ function startQuiz() {
     introSection.classList.add('hide');
     questionSection.classList.remove('hide');
     runQuestions();
+    startTime();
 }
 function runQuestions() {
     title.textContent = questions[index].question;
     option1.textContent = questions[index].options[0];
     option2.textContent = questions[index].options[1];
     option3.textContent = questions[index].options[2];
-    
+    option4.textContent = questions[index].options[3];
 }
+options.addEventListener('click', function(event)) {
+    var chosen =event.t
+}
+
+function startTime() {
+    // Sets interval in variable
+     timerInterval = setInterval(function() {
+      timerCount--;
+      timerSection.textContent = timerCount;
+  
+      if(timerCount <= 0) {
+       endGame();
+      }
+  
+    }, 1000);
+  }
+  function endGame() {
+    score = time;
+    clearInterval(timerInterval);
+
+  }
 
 // * I will be given a specified amount of time to answer all the questions in the quiz
 // * I will be presented with the first question
@@ -89,19 +114,19 @@ function runQuestions() {
 // }
 // console.log(startQuiz);
 // // start button to start quiz(function) - triggers timer to begin from 75 seconds, setInterval / clearInterval timer
-function setTime() {
-    // Sets interval in variable
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timeEl.textContent = secondsLeft + " Time Left:";
+// function startTime() {
+//     // Sets interval in variable
+//      timerInterval = setInterval(function() {
+//       secondsLeft--;
+//       timeEl.textContent = timerCount;
   
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        sendMessage();
-      }
+//       if(timerCount === 0) {
+//         clearInterval(timerCount);
+//         loseQuiz();
+//       }
   
-    }, 1000);
-  }
+//     }, 1000);
+//   }
 
 // removes intro text/section and displays random questions -- new text here?
 
