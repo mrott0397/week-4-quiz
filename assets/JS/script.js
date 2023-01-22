@@ -11,50 +11,97 @@
 // WHEN the game is over
 // THEN I can save my initials and my score
 
-// variables/arrays
-var questions = [
+// * Prompted to start the quiz by clicking a button - event listener
+// array of questions and answers
+const questions = [
     {
-        question: "What house is Harry Potter in?",
-        options: ["Slytherin", "Gryffindor", "Ravenclaw", "Hufflepuff"],
-        answer: "Gryffindor",
-    }
+        question: "Inside which HTML element do we put the JavaScript?",
+        options: ["<script>", "<javaScript>", "<js>", "<scripting>"],
+        answer: "<script>",
+    },
     
-    ,{
-        question: "What is the town called that is near Hogwarts?",
-        options: ["Hogfarts", "Hide-away Hallow", "Hogsmead", "Hoggle"],
-        answer: "Hogsmead",
-    }
+    {
+       question: "How do you write an array?",
+        options: ["With []", "With {}", "With ()", "With <>"],
+        answer: "With []",
+    },
     
-    ,{ question: "Who is the Greatest Wizard of All?",
-      options: ["Neville Longbottom", "Albus Dumbledor", "Gilderoy Lockhart", "Seamus Finnigan"],
-      answer: "Albus Dumbledor",
+    { question: "How can we view javaScript in the webpage??",
+      options: ["Not sure", "Dev Chrome", "Google", "It shows automatically"],
+      answer: "Dev Chrome",
 
     }
 ];
 console.log(questions);
+const introSection = document.querySelector('.intro-section');
+const questionSection = document.querySelector('.question-section');
+const title = document.querySelector('#questionTitle');
+const option1 = document.querySelector('#opt1');
+const option2 = document.querySelector('opt2');
+const option3 = document.querySelector('#opt3');
+
+var initialSelection = document.querySelector('.inistial-selection');
+var resultSelection = document.querySelector('.highscore');
+var index = 0;
+
+var start = document.querySelector('#startBtn');
+
+start.addEventListener("click", startQuiz);
+
+function startQuiz() {
+    introSection.classList.add('hide');
+    questionSection.classList.remove('hide');
+    runQuestions();
+}
+function runQuestions() {
+    title.textContent = questions[index].question;
+    option1.textContent = questions[index].options[0];
+    option2.textContent = questions[index].options[1];
+    option3.textContent = questions[index].options[2];
+    
+}
+
+// * I will be given a specified amount of time to answer all the questions in the quiz
+// * I will be presented with the first question
+// * I will be presented with the options answers
+// * When I answer correctly ther quiz should move to the next question
+// * When I answer a question incorrectly 10 seconds should be deducted from the timer
+// * I'm alerted if I answered the question correctly or incorrectly
+// * The other questions will not display when the other questions are presented
+// * I want my score tallied and displayed after all the questions were answered
+// * I will be prompted to input my initials when the game is over
+// * I'll be prompted to clear my score or play again
+// */
+
+// const startButton = document.getElementById('startBtn');
+// const timer = document.getElementById('timer');
+// const questionSelection = document.getElementById('qestionTitle');
+// const answerOptions = document.getElementsByClassName('options');
+
+
 
 // function to start quiz
 // function startQuiz() {
-//     let qButton = document.getElementsByClassName(".btn");
+//     let qButton = document.getElementById("startbtn");
 //     qButton.addEventListener("click", "");
 
 //     return startQuiz;
 // }
 // console.log(startQuiz);
 // // start button to start quiz(function) - triggers timer to begin from 75 seconds, setInterval / clearInterval timer
-// function setTime() {
-//     // Sets interval in variable
-//     var timerInterval = setInterval(function() {
-//       secondsLeft--;
-//       timeEl.textContent = secondsLeft + " Time Left:";
+function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeEl.textContent = secondsLeft + " Time Left:";
   
-//       if(secondsLeft === 0) {
-//         clearInterval(timerInterval);
-//         sendMessage();
-//       }
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        sendMessage();
+      }
   
-//     }, 1000);
-//   }
+    }, 1000);
+  }
 
 // removes intro text/section and displays random questions -- new text here?
 

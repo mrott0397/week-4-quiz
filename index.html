@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/CSS/style.css" />
-    <title>Harry Potter Quiz</title>
+    <title>JavaScript Fundamentals Quiz</title>
   </head>
 
   <header id="header">
@@ -16,13 +16,11 @@
   </header>
 
   <main>
-    <section class="intro">
-      <div>
-        <h2>Welcome to the Harry Potter Quiz!</h2>
+    <section class="container">
+      <div class="intro-section">
+        <h2>Welcome to the JavaScript Fundamentals Quiz!</h2>
         <p>
-          Please answer the following questions to prove that you are not a
-          muggle! When you answer a question incorrectly, the timer will go down
-          10 seconds... Choose Wizardly!
+          Please answer the following questions to prove that you are a master at javaScript. Keep in mind, for every incorrect answer the timer will go down by 10 seconds
         </p>
         <button id="startBtn">Start Quiz</button>
       </div>
@@ -30,15 +28,15 @@
 
     <section class="question-section">
       <h3 id="questionTitle">Question</h3>
-        <ul class="options">
-            <button id="opt1"></button>
-            <button id="opt2"></button>
-            <button id="opt3"></button>
-      </ul>
+        <ol class="options">
+            <button id="opt1">Option 1</button>
+            <button id="opt2">Option 2</button>
+            <button id="opt3">Option 3</button>
+      </ol>
     </section>
 
-    <section class="divider">
-        <div class="initial-section hide">
+    <section class="final-score">
+        <div class="initial-selection">
             <p>Your Final Score Is</p>
             <p>Enter Initials Here
                 <input type="text">
@@ -47,11 +45,11 @@
         </div>
     </section>
 
-    <section class="result-section hide">
+    <section class="highscore">
         <p>Highscore</p>
         <div id="finalscore">
             <button id="go-back">Go Back</button>
-            <button id="clear-highscore">Clear Highscale</button>
+            <button id="clear-highscore">Clear Highscore</button>
         </div>
     </section>
 
