@@ -63,10 +63,13 @@ function runQuestions() {
     option2.textContent = questions[index].options[1];
     option3.textContent = questions[index].options[2];
     option4.textContent = questions[index].options[3];
-}
-options.addEventListener('click', function(event)) {
-    var chosen =event.t
-}
+};
+
+// adding click to go to next page--
+options.addEventListener('click', function(event) {
+    let chosen = event.target.textContent;
+    console.log(chosen);
+})
 
 function startTime() {
     // Sets interval in variable
