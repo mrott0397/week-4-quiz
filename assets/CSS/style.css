@@ -3,33 +3,49 @@
 }
 
 main {
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-family: sans-serif;
     background-color: #fff;
   }
- 
-h1 {
+
+.highscore-link {
+    text-align: left;
+    font-size: larger;
+    color: black;
+    text-decoration: solid;
+  }
+  #timer {
     text-align: right;
+  }
+
+h1 {
+    font-size: larger;
     margin:  auto;
     letter-spacing: 0.25em;
     color: #093145;
   }
 
+
 #container {
       display: flex;
       flex-direction: column;
-      margin: 0 auto;
+      padding: 20px 10px;
       max-width: 600px;
   }
 /* styling for question box area  */
 .question-section {
+
     width: 100%;
     height: auto;
     border: 1px solid #999;
     border-radius: 5px;
     justify-content: space-around;
-    margin: 2em auto; 
-    display: flex;
-    flex-direction: column;
+    margin: 2em ; 
+   
     /* display: none; */
 }
 button {

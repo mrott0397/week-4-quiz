@@ -33,6 +33,7 @@ const questions = [
     }
 ];
 console.log(questions);
+
 const introSection = document.querySelector('.intro-section');
 const questionSection = document.querySelector('.question-section');
 const title = document.querySelector('#questionTitle');
@@ -41,12 +42,12 @@ const option2 = document.querySelector('#opt2');
 const option3 = document.querySelector('#opt3');
 const option4 = document.querySelector("#opt4");
 const timerSection = document.querySelector('#timer');
-var initialSelection = document.querySelector('.inistial-selection');
+var initialSelection = document.querySelector('.initial-selection');
 var resultSelection = document.querySelector('.highscore');
 var index = 0;
 let timerInterval;
-let timerCount = 75;
-
+let timerCount = 30;
+var answerBox = document.querySelector('.options')
 var start = document.querySelector('#startBtn');
 
 start.addEventListener("click", startQuiz);
@@ -66,10 +67,29 @@ function runQuestions() {
 };
 
 // adding click to go to next page--
-options.addEventListener('click', function(event) {
+answerBox.addEventListener('click', function(event) {
     let chosen = event.target.textContent;
     console.log(chosen);
-})
+    console.log(questions[index].answer);
+    if (chosen == questions[index].answer) {
+        console.log("correct");
+    } else {
+        timerCount = timerCount - 5;
+        console.log("wrong");
+    }
+    showNext();
+
+    }
+)
+
+function showNext() {
+    index++
+    if (index >= questions.length) {
+        endQuiz();
+        return;
+        
+    }
+}
 
 function startTime() {
     // Sets interval in variable
@@ -78,15 +98,29 @@ function startTime() {
       timerSection.textContent = timerCount;
   
       if(timerCount <= 0) {
-       endGame();
+       endQuiz();
       }
   
     }, 1000);
   }
-  function endGame() {
-    score = time;
-    clearInterval(timerInterval);
 
+  function sendMessage() {
+    timerCount.textContent = ('Time is up!');
+  }
+
+//   function endGame() {
+//     score = timerCount;
+//     clearInterval(timerInterval);
+
+//   }
+
+  function endQuiz() {
+    sendMessage();
+    questionSection.classList.add('hide');
+    initialSelection.classList.remove('hide');
+    score = timerCount;
+    console.log(score);
+    clearInterval(timerInterval);
   }
 
 // * I will be given a specified amount of time to answer all the questions in the quiz
