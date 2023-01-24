@@ -47,8 +47,15 @@ var resultSelection = document.querySelector('.highscore');
 var index = 0;
 let timerInterval;
 let timerCount = 30;
-var answerBox = document.querySelector('.options')
+var answerBox = document.querySelector('.options');
 var start = document.querySelector('#startBtn');
+var finalDisplay = document.getElementById('finalscore-display');
+var submitBtn = document.getElementById('submit');
+var userInitial = document.getElementById('init');
+var score = 0;
+var initials;
+var highscores = document.getElementById('finalscore');
+var initial = [];
 
 start.addEventListener("click", startQuiz);
 
@@ -59,43 +66,78 @@ function startQuiz() {
     startTime();
 }
 function runQuestions() {
+    if (index == questions.length) {
+        endQuiz();
+        return;
+    }
     title.textContent = questions[index].question;
     option1.textContent = questions[index].options[0];
     option2.textContent = questions[index].options[1];
     option3.textContent = questions[index].options[2];
     option4.textContent = questions[index].options[3];
+    index++;
 };
 
 // adding click to go to next page--
-answerBox.addEventListener('click', function(event) {
+option1.addEventListener('click', function(event) {
     let chosen = event.target.textContent;
-    console.log(chosen);
-    console.log(questions[index].answer);
-    if (chosen == questions[index].answer) {
+    if (index != questions.length && chosen == questions[index-1].answer) {
         console.log("correct");
     } else {
         timerCount = timerCount - 5;
         console.log("wrong");
     }
-    showNext();
+    runQuestions();
+
+    }
+)
+option2.addEventListener('click', function(event) {
+    let chosen = event.target.textContent;
+
+    if (index != questions.length && chosen == questions[index-1].answer) {
+        console.log("correct");
+    } else {
+        timerCount = timerCount - 5;
+        console.log("wrong");
+    }
+    runQuestions();
+
+    }
+)
+option3.addEventListener('click', function(event) {
+    let chosen = event.target.textContent;
+   
+    if (index != questions.length && chosen == questions[index-1].answer) {
+        console.log("correct");
+    } else {
+        timerCount = timerCount - 5;
+        console.log("wrong");
+    }
+    runQuestions();
+
+    }
+)
+option4.addEventListener('click', function(event) {
+    let chosen = event.target.textContent;
+  
+    if (index != questions.length && chosen == questions[index-1].answer) {
+        console.log("correct");
+    } else {
+        timerCount = timerCount - 5;
+        console.log("wrong");
+    }
+    runQuestions();
 
     }
 )
 
-function showNext() {
-    index++
-    if (index >= questions.length) {
-        endQuiz();
-        return;
-        
-    }
-}
+
 
 function startTime() {
     // Sets interval in variable
      timerInterval = setInterval(function() {
       timerCount--;
-      timerSection.textContent = timerCount;
+      timerSection.textContent = "Time Left: " + timerCount;
   
       if(timerCount <= 0) {
        endQuiz();
@@ -108,20 +150,86 @@ function startTime() {
     timerCount.textContent = ('Time is up!');
   }
 
-//   function endGame() {
-//     score = timerCount;
-//     clearInterval(timerInterval);
-
-//   }
-
   function endQuiz() {
     sendMessage();
     questionSection.classList.add('hide');
     initialSelection.classList.remove('hide');
     score = timerCount;
-    console.log(score);
+    finalDisplay.textContent = score;
+    
     clearInterval(timerInterval);
   }
+
+// event.listener for 'submit' 
+  // grab user imput
+  // user input + score will get stored into local storage 
+//   var userInitial = document.getElementById('init')
+
+  // HOW TO GET FINAL SCORE TO DISPLAY
+  // HOW TO GET INITIALS INTO LOCAL STORAGE?!
+
+  submitBtn.addEventListener('click', function(event){
+    initialSelection.classList.add('hide');
+    resultSelection.classList.remove('hide');
+    initials = userInitial.value;
+    score = timerCount;
+    localStorage.setItem(initials, score);
+  })
+  // new function reading from local storage to go to highscore local list
+  
+
+function showHighscore() {
+    // Get stored initials from localStorage
+    var storedInitials = JSON.parse(localStorage.getItem("initials"));
+  
+    // If initials were retrieved from localStorage, update the todos array to it
+    if (storedInitials !== null) {
+      initials = storedInitials;
+    }
+  // This is a helper function that will render initials to the DOM
+    renderInitials();
+  }
+  function storeInitials() {
+    // Stringify and set key in localStorage to todos array
+    localStorage.setItem("initials", JSON.stringify(initial));
+  }
+
+  // The following function renders items in a todo list as <li> elements
+function renderInitials() {
+    // Clear initialList element and update initialCountSpan
+    highscores.innerHTML = "";
+  
+    // Render a new li for each todo
+    for (var index = 0; index < initial.length; index++) {
+      var initials = initial[index];
+      var li = document.createElement("li");
+      li.textContent = initials;
+      li.setAttribute("data-index", index);
+      highscores.appendChild(li);
+    }
+  }
+showHighscore();
+
+
+
+// event.listener for 'submit' 
+  // grab user imput
+  // user input + score will get stored into local storage 
+//   var userInitial = document.getElementById('init')
+
+  // HOW TO GET FINAL SCORE TO DISPLAY
+  // HOW TO GET INITIALS INTO LOCAL STORAGE?!
+
+//   submitBtn.addEventListener('click', function(event){
+//     initialSelection.classList.add('hide');
+//     resultSelection.classList.remove('hide');
+//     var initials = userInitial.value;
+//     score = timerCount;
+//     localStorage.setItem(initials, score);
+//   })
+  // new function reading from local storage to go to highscore local list
+
+
 
 // * I will be given a specified amount of time to answer all the questions in the quiz
 // * I will be presented with the first question

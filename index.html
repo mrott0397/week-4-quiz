@@ -9,12 +9,13 @@
   </head>
 
   <header id="header">
-    <div>
-       <h1>
+    <div class="top">
         <a class="highscore-link" href="#">Highscore</a>
-        </h1> 
-        <h1 id="timer">Time: </h1>
+        <h1 id="timer">Time:</h1>
+    
     </div>
+  
+  
   </header>
 
   <main>
@@ -22,7 +23,9 @@
       <div class="intro-section">
         <h2>Welcome to the JavaScript Fundamentals Quiz!</h2>
         <p>
-          Please answer the following questions to prove that you are a master at javaScript. Keep in mind, for every incorrect answer the timer will go down by 10 seconds
+          Please answer the following questions to prove that you are a master
+          at javaScript. Keep in mind, for every incorrect answer the timer will
+          go down by 10 seconds
         </p>
         <button id="startBtn">Start Quiz</button>
       </div>
@@ -30,32 +33,35 @@
 
     <section class="question-section hide">
       <h3 id="questionTitle">Question</h3>
-        <ol class="options">
-            <button id="opt1">Option 1</button>
-            <button id="opt2">Option 2</button>
-            <button id="opt3">Option 3</button>
-            <button id="opt4">Option 4</button>
+      <ol class="options">
+        <button id="opt1">Option 1</button>
+        <button id="opt2">Option 2</button>
+        <button id="opt3">Option 3</button>
+        <button id="opt4">Option 4</button>
       </ol>
     </section>
 
     <section class="final-score">
-        <div class="initial-selection hide">
-            <p>Your Final Score Is</p>
-            <p>Enter Initials Here
-                <input type="text">
-                <button>Submit</button>
-            </p>
-        </div>
+      <div class="initial-selection hide">
+        <p id="finalscore-display">Your Final Score Is</p>
+        <p>
+          Enter Initials Here
+          <input id="init" type="text" />
+          <button id="submit">Submit</button>
+        </p>
+      </div>
     </section>
 
     <section class="highscore hide">
-        <p>Highscore</p>
-        <div id="finalscore">
-            <button id="go-back">Go Back</button>
-            <button id="clear-highscore">Clear Highscore</button>
-        </div>
-    </section>
+      <p>Highscore</p>
+      <div>
+        <ol id="finalscore">
 
+        </ol>
+        <button id="go-back">Go Back</button>
+        <button id="clear-highscore">Clear Highscore</button>
+      </div>
+    </section>
   </main>
   <body>
     <script src="./assets/JS/script.js"></script>
