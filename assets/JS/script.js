@@ -12,7 +12,7 @@
 // THEN I can save my initials and my score
 
 // * Prompted to start the quiz by clicking a button - event listener
-// array of questions and answers
+// object/array of questions and answers
 const questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -158,79 +158,39 @@ function startTime() {
     finalDisplay.textContent = score;
     
     clearInterval(timerInterval);
+    showHighscore();
   }
 
 // event.listener for 'submit' 
-  // grab user imput
-  // user input + score will get stored into local storage 
-//   var userInitial = document.getElementById('init')
-
-  // HOW TO GET FINAL SCORE TO DISPLAY
-  // HOW TO GET INITIALS INTO LOCAL STORAGE?!
-
   submitBtn.addEventListener('click', function(event){
     initialSelection.classList.add('hide');
     resultSelection.classList.remove('hide');
     initials = userInitial.value;
     score = timerCount;
-    localStorage.setItem(initials, score);
+    var userScore = document.getElementById('user-score');
+    userScore.textContent = initials + score;
+    var storedScore = JSON.parse(localStorage.getItem('highscores')) || [];
+    var userHighscore = {
+        user: initials, 
+        score: score
+    }
+    storedScore.push(userHighscore);
+    localStorage.setItem ('highscores', JSON.stringify (storedScore));
   })
-  // new function reading from local storage to go to highscore local list
-  
-
-function showHighscore() {
+ function showHighscore() {
     // Get stored initials from localStorage
-    var storedInitials = JSON.parse(localStorage.getItem("initials"));
-  
-    // If initials were retrieved from localStorage, update the todos array to it
-    if (storedInitials !== null) {
-      initials = storedInitials;
-    }
-  // This is a helper function that will render initials to the DOM
-    renderInitials();
-  }
-  function storeInitials() {
-    // Stringify and set key in localStorage to todos array
-    localStorage.setItem("initials", JSON.stringify(initial));
-  }
-
-  // The following function renders items in a todo list as <li> elements
-function renderInitials() {
-    // Clear initialList element and update initialCountSpan
-    highscores.innerHTML = "";
-  
-    // Render a new li for each todo
-    for (var index = 0; index < initial.length; index++) {
-      var initials = initial[index];
+    var allHighscores = document.getElementById('all-highscores');
+    var storedInitials = JSON.parse(localStorage.getItem("highscores"));
+    for (let index = 0; index < storedInitials.length; index++) {
+        let element = storedInitials[index];
+        console.log(element);
+        // Render a new li for each todo
       var li = document.createElement("li");
-      li.textContent = initials;
-      li.setAttribute("data-index", index);
-      highscores.appendChild(li);
+      li.textContent = `Initials: ${element.user}  Score: ${element.score}`;
+      allHighscores.appendChild(li);
+
     }
   }
-showHighscore();
-
-
-
-// event.listener for 'submit' 
-  // grab user imput
-  // user input + score will get stored into local storage 
-//   var userInitial = document.getElementById('init')
-
-  // HOW TO GET FINAL SCORE TO DISPLAY
-  // HOW TO GET INITIALS INTO LOCAL STORAGE?!
-
-//   submitBtn.addEventListener('click', function(event){
-//     initialSelection.classList.add('hide');
-//     resultSelection.classList.remove('hide');
-//     var initials = userInitial.value;
-//     score = timerCount;
-//     localStorage.setItem(initials, score);
-//   })
-  // new function reading from local storage to go to highscore local list
-
-
-
 // * I will be given a specified amount of time to answer all the questions in the quiz
 // * I will be presented with the first question
 // * I will be presented with the options answers
@@ -243,49 +203,5 @@ showHighscore();
 // * I'll be prompted to clear my score or play again
 // */
 
-// const startButton = document.getElementById('startBtn');
-// const timer = document.getElementById('timer');
-// const questionSelection = document.getElementById('qestionTitle');
-// const answerOptions = document.getElementsByClassName('options');
 
-
-
-// function to start quiz
-// function startQuiz() {
-//     let qButton = document.getElementById("startbtn");
-//     qButton.addEventListener("click", "");
-
-//     return startQuiz;
-// }
-// console.log(startQuiz);
-// // start button to start quiz(function) - triggers timer to begin from 75 seconds, setInterval / clearInterval timer
-// function startTime() {
-//     // Sets interval in variable
-//      timerInterval = setInterval(function() {
-//       secondsLeft--;
-//       timeEl.textContent = timerCount;
-  
-//       if(timerCount === 0) {
-//         clearInterval(timerCount);
-//         loseQuiz();
-//       }
-  
-//     }, 1000);
-//   }
-
-// removes intro text/section and displays random questions -- new text here?
-
-// function if/else for adding up points/ to check for right answer 
-//  -eventListener for all button clicks
-//  -subtract seconds when correct answer and prompt incorrect
-//  -add 1 point if correct and prompt correct
-
-// EVENT LISTENERS
-//  1) Start Quiz
-//  2) answer boolean?
-//  3) last question -- all done / results MAYBE
-//  4) enter intitials, "submit"
-//  5) "go back" or "clear highscore"
-//  6) if "clear highscores" then "go back" or "clear highscore"
-// display correct / wrong message 
 
