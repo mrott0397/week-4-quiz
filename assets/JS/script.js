@@ -16,19 +16,19 @@
 const questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
-        options: ["<script>", "<javaScript>", "<js>", "<scripting>"],
-        answer: "<script>",
+        options: ["1.<script>", "2.<javaScript>", "3.<js>", "4.<scripting>"],
+        answer: "1.<script>",
     },
     
     {
        question: "How do you write an array?",
-        options: ["With []", "With {}", "With ()", "With <>"],
-        answer: "With []",
+        options: ["1.With []", "2.With {}", "3.With ()", "4.With <>"],
+        answer: "1.With []",
     },
     
     { question: "How can we view javaScript in the webpage??",
-      options: ["Not sure", "Dev Chrome", "Google", "It shows automatically"],
-      answer: "Dev Chrome",
+      options: ["1.Not sure", "2.Dev Tools", "3.Google", "4.It shows automatically"],
+      answer: "2.Dev Tools",
 
     }
 ];
@@ -56,6 +56,9 @@ var score = 0;
 var initials;
 var highscores = document.getElementById('finalscore');
 var initial = [];
+var goBack = document.querySelector('#go-back');
+var clearScores = document.querySelector('#clear-highscore');
+var allHighscores = document.querySelector('#all-highscores')
 
 start.addEventListener("click", startQuiz);
 
@@ -65,8 +68,9 @@ function startQuiz() {
     runQuestions();
     startTime();
 }
+
 function runQuestions() {
-    if (index == questions.length) {
+    if (index === questions.length) {
         endQuiz();
         return;
     }
@@ -81,10 +85,10 @@ function runQuestions() {
 // adding click to go to next page--
 option1.addEventListener('click', function(event) {
     let chosen = event.target.textContent;
-    if (index != questions.length && chosen == questions[index-1].answer) {
+    if (index !== questions.length && chosen === questions[index-1].answer) {
         console.log("correct");
     } else {
-        timerCount = timerCount - 5;
+        timerCount -= 5; //  change other ones in code
         console.log("wrong");
     }
     runQuestions();
@@ -94,7 +98,7 @@ option1.addEventListener('click', function(event) {
 option2.addEventListener('click', function(event) {
     let chosen = event.target.textContent;
 
-    if (index != questions.length && chosen == questions[index-1].answer) {
+    if (index !== questions.length && chosen === questions[index-1].answer) {
         console.log("correct");
     } else {
         timerCount = timerCount - 5;
@@ -107,7 +111,7 @@ option2.addEventListener('click', function(event) {
 option3.addEventListener('click', function(event) {
     let chosen = event.target.textContent;
    
-    if (index != questions.length && chosen == questions[index-1].answer) {
+    if (index !== questions.length && chosen === questions[index-1].answer) {
         console.log("correct");
     } else {
         timerCount = timerCount - 5;
@@ -120,7 +124,7 @@ option3.addEventListener('click', function(event) {
 option4.addEventListener('click', function(event) {
     let chosen = event.target.textContent;
   
-    if (index != questions.length && chosen == questions[index-1].answer) {
+    if (index !== questions.length && chosen === questions[index-1].answer) {
         console.log("correct");
     } else {
         timerCount = timerCount - 5;
@@ -130,8 +134,6 @@ option4.addEventListener('click', function(event) {
 
     }
 )
-
-
 
 function startTime() {
     // Sets interval in variable
@@ -186,11 +188,27 @@ function startTime() {
         console.log(element);
         // Render a new li for each todo
       var li = document.createElement("li");
+      li.setAttribute('class', 'score-list')
       li.textContent = `Initials: ${element.user}  Score: ${element.score}`;
       allHighscores.appendChild(li);
 
     }
   }
+  goBack.addEventListener("click", function () {
+    introSection.classList.remove('hide');
+    resultSelection.classList.add('hide');
+    index = 0;
+    time = 30;
+    // reset function
+})
+
+clearScores.addEventListener("click", function() {
+    localStorage.removeItem('highscores');
+    window.location.reload();
+//    allHighscores.remove();
+//    highscores.remove();
+  })
+
 // * I will be given a specified amount of time to answer all the questions in the quiz
 // * I will be presented with the first question
 // * I will be presented with the options answers
