@@ -186,7 +186,7 @@ function startTime() {
     for (let index = 0; index < storedInitials.length; index++) {
         let element = storedInitials[index];
         console.log(element);
-        // Render a new li for each todo
+        // Render a new li for each score
       var li = document.createElement("li");
       li.setAttribute('class', 'score-list')
       li.textContent = `Initials: ${element.user}  Score: ${element.score}`;
@@ -198,15 +198,13 @@ function startTime() {
     introSection.classList.remove('hide');
     resultSelection.classList.add('hide');
     index = 0;
-    time = 30;
+    timerCount = 30;
     // reset function
 })
 
 clearScores.addEventListener("click", function() {
     localStorage.removeItem('highscores');
     window.location.reload();
-//    allHighscores.remove();
-//    highscores.remove();
   })
 
 // * I will be given a specified amount of time to answer all the questions in the quiz
