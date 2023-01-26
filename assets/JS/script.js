@@ -59,6 +59,7 @@ var initial = [];
 var goBack = document.querySelector('#go-back');
 var clearScores = document.querySelector('#clear-highscore');
 var allHighscores = document.querySelector('#all-highscores')
+var highscoreLink =document.querySelector('.highscore-link');
 
 start.addEventListener("click", startQuiz);
 
@@ -180,8 +181,10 @@ function startTime() {
     localStorage.setItem ('highscores', JSON.stringify (storedScore));
   })
  function showHighscore() {
+    // allHighscores.textContent = ''
     // Get stored initials from localStorage
     var allHighscores = document.getElementById('all-highscores');
+    allHighscores.textContent = ''
     var storedInitials = JSON.parse(localStorage.getItem("highscores"));
     for (let index = 0; index < storedInitials.length; index++) {
         let element = storedInitials[index];
@@ -206,7 +209,14 @@ clearScores.addEventListener("click", function() {
     localStorage.removeItem('highscores');
     window.location.reload();
   })
-
+  highscoreLink.addEventListener("click", function () {
+    introSection.classList.add("hide");
+    questionSection.classList.add("hide");
+    initialSelection.classList.add("hide");
+    resultSelection.classList.remove("hide");
+    showHighscore();
+  });
+  
 // * I will be given a specified amount of time to answer all the questions in the quiz
 // * I will be presented with the first question
 // * I will be presented with the options answers
